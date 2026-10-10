@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.salem.play'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.salem.play"
+        minSdk 21
+        targetSdk 34
+        versionCode Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER") ?: "1")
+        versionName "1.0." + (System.getenv("GITHUB_RUN_NUMBER") ?: "0")
+    }
+
+    signingConfigs {
+        salem {
+            storeFile file('salem.keystore')
+            storePassword 'salemplay123'
+            keyAlias 'salem'
+            keyPassword 'salemplay123'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.salem
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

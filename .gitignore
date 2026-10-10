@@ -1,0 +1,5 @@
+build/
+.gradle/
+app/build/
+local.properties
+app/src/main/assets/hls.min.js
